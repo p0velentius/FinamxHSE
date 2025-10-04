@@ -1,3 +1,9 @@
+path_to_test_df = 'candles_2.csv'
+path_to_preprocessor = 'preprocessor.joblib'
+path_to_ridge_models_h = 'final_ridge_models_h.joblib'
+path_to_ridge_model = 'final_ridge_model.joblib'
+
+
 import joblib
 import numpy as np
 import pandas as pd
@@ -13,13 +19,13 @@ start_time_wall = time.time()
 # best_alpha = 300
 
 # --- 1. Загружаем препроцессор и модель ---
-preprocessor = joblib.load('preprocessor.joblib')
+preprocessor = joblib.load(path_to_preprocessor)
 
 # Выбираем нужный вариант
 PER_H_ALPHA = True  # или False — в зависимости от того, какой режим ты сохранял
 
 if PER_H_ALPHA:
-    model_data = joblib.load('final_ridge_models_h.joblib')
+    model_data = joblib.load(path_to_ridge_models_h)
     models_h = model_data["models_h"]
     best_alpha_h = model_data["best_alpha_h"]
     all_tickers = model_data["all_tickers"]
@@ -28,7 +34,7 @@ if PER_H_ALPHA:
     K = model_data["K"]
     H = model_data["H"]
 else:
-    model_data = joblib.load('final_ridge_model.joblib')
+    model_data = joblib.load(path_to_ridge_model)
     final_model = model_data["model"]
     best_alpha = model_data["best_alpha"]
     all_tickers = model_data["all_tickers"]
@@ -39,9 +45,9 @@ else:
 
 print("Модель и препроцессор успешно загружены")
 
-
 # Загрузка новых данных
-test_candles = pd.read_csv('candles_2.csv')
+test_candles = pd.read_csv(path_to_test_df)
+
 
 def add_technical_features(df: pd.DataFrame) -> pd.DataFrame:
     """
