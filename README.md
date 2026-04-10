@@ -1,7 +1,40 @@
-# Volodin core solution
+# 📈 AI Trade Hack: Прогнозирование цен акций на основе новостного фона
 
-To get predictions on our data you should run the run.py script and manage the external links there.
-It uses the model packages with preprocessor at preprocessor.joblib, ridge model at final_ridge_models_h.joblib.
-The resulting dataset of test file is kept at submission.csv
+## 📌 Описание проекта
+Решение для хакатона от **Финам** по прогнозированию движения цен на акции с использованием методов машинного обучения и анализа временных рядов.
 
-To see our solution you may check the Jupiter Notebook at volodin_core_main_10_pro_max.ipynb.
+## 🎯 Задача
+Построить модель, которая на основе исторических данных о ценах (свечные данные) предсказывает будущее движение котировок акций.
+
+## 🛠 Технологический стек
+- **ML Models:**
+  - Ridge Regression (основная модель)
+  - Ансамбли моделей для разных горизонтов прогнозирования
+- **Feature Engineering:**
+  - Технические индикаторы на основе свечных данных
+  - Временные признаки
+  - Статистические фичи
+- **Preprocessing:**
+  - Масштабирование признаков
+  - Обработка пропусков
+  - Feature selection
+
+## 📊 Архитектура решения
+
+### 1. **Feature Engineering** (`volodin_core_main_10_pro_max.ipynb`)
+- Извлечение признаков из свечных данных (OHLCV)
+- Создание технических индикаторов
+- Временные лаги и скользящие статистики
+- Отбор наиболее информативных признаков
+
+### 2. **Model Training**
+- **Ridge Regression** с регуляризацией для борьбы с переобучением
+- Отдельные модели для разных временных горизонтов
+- Cross-validation для подбора гиперпараметров
+
+### 3. **Inference** (`run.py`)
+- Загрузка предобученных моделей
+- Предобработка новых данных
+- Генерация прогнозов
+
+## 📁 Структура проекта
