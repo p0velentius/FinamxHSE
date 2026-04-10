@@ -37,4 +37,10 @@
 - Предобработка новых данных
 - Генерация прогнозов
 
-## 📁 Структура проекта
+### 📁 Структура проекта
+- volodin_core_main_10_pro_max.ipynb — обучение и feature engineering
+- run.py — скрипт для инференса
+- preprocessor.joblib — сериализованный препроцессор
+- final_ridge_models_h.joblib — обученные Ridge модели
+- candles_2.csv — свечные данные (OHLCV)
+- submission.csv — прогнозы модели
